@@ -6,7 +6,7 @@ from file and moves the rover based on input
 ### Assumptions
 - Each rover always has both landing and instructions input
   - A rover with only one of these (landing but no instructions or instructions but no landing) would be discarded
-- Rovers instructions don't permit rover to move beyond the plateau boundary. Adding this to v2.0
+- Rovers instructions don't permit rover to move beyond the plateau boundary. Adding this to v2.0 :)
 
 ### Tech Stack
 Built using Python 3.10.5 (see `.python-version` file). Libraries are kept as minimal as possible 
