@@ -13,13 +13,13 @@ Built using Python 3.10.5 (see `.python-version` file). Libraries are kept as mi
 (see `requirements.in` file)
 
 
-## Install #
+## Install
 Creates a fresh virtual environment (called .venv) and installs requirements
 ```commandline
 make setup
 ```
 
-## Run #
+## Run
 Run a single instance of the wsgi server for local development
 
 Install pip requirements
@@ -27,17 +27,17 @@ Install pip requirements
 make pip_sync
 ```
 
-Run rover control
-- via command line
+### Run rover control
+#### via command line, run:
 ```commandline
 python main.py
 ```
-
-- via file
-Import and call the sentry function directly, passing no arguments. Alternatively,
+#### via file, run:
 ```commandline
 python main.py sentry 
 ```
+Alternatively, import the function `sentry` and call the sentry function directly,
+passing no arguments. The function gets its input from file.
 
 Run tests
 ```commandline
