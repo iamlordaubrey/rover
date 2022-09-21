@@ -39,7 +39,7 @@ python main.py sentry
 Alternatively, import the function `sentry` and call the sentry function directly,
 passing no arguments. The function gets its input from file.
 
-Run tests
+### Run tests
 ```commandline
 make runtest
 ```
