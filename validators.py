@@ -46,7 +46,7 @@ def validate_instructions(instructions: list) -> bool:
     return set(instructions).issubset(VALID_INSTRUCTIONS)
 
 
-def validate_new_rover_entry(user_input):
+def validate_new_rover_entry(user_input) -> bool:
     try:
         if int(user_input) in (0, 1):
             return True
