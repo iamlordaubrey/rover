@@ -1,3 +1,4 @@
+import sys
 from typing import Tuple
 
 from constants import CARDINAL_POINTS, INPUT_FILE
@@ -21,26 +22,21 @@ def control_rovers(rovers: dict) -> dict:
         cardinality = CircularList(CARDINAL_POINTS)
 
         for instruction in instructions:
-            # check instruction is either L/R/M
-            if instruction == 'L':
-                current_cardinal = cardinality.previous(current_cardinal)
-            elif instruction == 'R':
-                current_cardinal = cardinality.next(current_cardinal)
-            elif instruction == 'M':
-                if current_cardinal == 'N':
-                    landing_y += 1
-                elif current_cardinal == 'E':
-                    landing_x += 1
-                elif current_cardinal == 'S':
-                    landing_y -= 1
-                elif current_cardinal == 'W':
-                    landing_x -= 1
-                else:
-                    print('Never gets here')
-                    raise
-            else:
-                print('Never gets here')
-                raise
+            match instruction:
+                case 'L':
+                    current_cardinal = cardinality.previous(current_cardinal)
+                case 'R':
+                    current_cardinal = cardinality.next(current_cardinal)
+                case 'M':
+                    match current_cardinal:
+                        case 'N':
+                            landing_y += 1
+                        case 'E':
+                            landing_x += 1
+                        case 'S':
+                            landing_y -= 1
+                        case 'W':
+                            landing_x -= 1
 
         new_location[rover] = f'{landing_x} {landing_y} {current_cardinal}'
 
@@ -84,15 +80,6 @@ def read_lines_in_2s(file_path: str) -> Tuple[list, dict]:
         pass
 
     return config_input, rovers_detail
-
-
-def sentry(config_input: None | list = None, rovers: None | dict = None):
-    if config_input is None or rovers is None:
-        config_input, rovers = read_lines_in_2s(INPUT_FILE)
-
-    new_location: dict = control_rovers(rovers)
-    for rover, location in new_location.items():
-        print(f'{rover}:{location}')
 
 
 def should_prompt() -> bool:
@@ -157,9 +144,20 @@ def get_rovers(config_input: list) -> dict:
     return rovers_detail
 
 
-if __name__ == '__main__':
-    # configuration_input: list = get_configuration()
-    # rovers_dict: dict = get_rovers(configuration_input)
+def sentry(config_input: None | list = None, rovers: None | dict = None):
+    if config_input is None or rovers is None:
+        config_input, rovers = read_lines_in_2s(INPUT_FILE)
 
-    # sentry(configuration_input, rovers_dict)
-    sentry()  # delete this line
+    new_location: dict = control_rovers(rovers)
+    for rover, location in new_location.items():
+        print(f'{rover}:{location}')
+
+
+if __name__ == '__main__':
+    if len(sys.argv) == 2:
+        sentry()
+    else:
+        configuration_input: list = get_configuration()
+        rovers_dict: dict = get_rovers(configuration_input)
+
+        sentry(configuration_input, rovers_dict)

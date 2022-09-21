@@ -20,8 +20,3 @@ class CircularList(object):
         else:
             index -= 1
         return self.iterable[index]
-
-
-def move(cardinal_point):
-    pass
-

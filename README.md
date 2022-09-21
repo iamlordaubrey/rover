@@ -1,16 +1,16 @@
-# Receipt Extractor
+# Rover Control
 
-Description: An API that identifies blocks in a receipt and stores specific 
-receipt information to a database
+Description: An Rover Control application that either takes in input from the command line or reads input
+from file and moves the rover based on input
 
-### Limitations
-- Versioning wasn't implemented
-- Database used is sqlite3
+### Assumptions
+- Each rover always has both landing and instructions input
+  - A rover with only one of these (landing but no instructions or instructions but no landing) would be discarded
+- Rovers instructions don't permit rover to move beyond the plateau boundary. Adding this to v2.0
 
 ### Tech Stack
-Built using Django and Django Rest framework. Libraries are kept as minimal as possible. 
-
-Runtime: Python 3.10.5 (can be found in `.python-version` file)
+Built using Python 3.10.5 (see `.python-version` file). Libraries are kept as minimal as possible 
+(see `requirements.in` file)
 
 
 ## Install #
@@ -27,25 +27,19 @@ Install pip requirements
 make pip_sync
 ```
 
-Run server
+Run rover control
+- via command line
 ```commandline
-make runserver
+python main.py
+```
+
+- via file
+Import and call the sentry function directly, passing no arguments. Alternatively,
+```commandline
+python main.py sentry 
 ```
 
 Run tests
 ```commandline
 make runtest
 ```
-
-
-Assumptions
-- each rover always has landing and instructions input
-  - a rover with only one of these would be discarded
-
-
-To run
-- input via commandline
-  - python main.py
-- input from a file
-  - call the sentry function
-  - 
